@@ -1,4 +1,4 @@
-{% set version = '0.7' %}
+{% set version = '1.4' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,35 +12,57 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/tensorflow_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/tensorflow/tensorflow_{{ version }}.tar.gz
-  sha256: 1b15123f689a452f55db3ac0908e4dd64e8a628dc6e57bd927d3ea7472123f42
+  sha256: 3deffc78131438dd3039a565a09da8913d6555e1b7fa1b892c046d8df348cfc8
+
+
+  # patches:
+   # List any patch files here
+   # - fix.patch
 
 build:
+  # If this is a new build for the same version, increment the build number.
   number: 0
-  skip: true  # [win32]
 
+  # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
 
+# Suggests: testthat
 requirements:
   build:
     - r-base
-    - r-reticulate >=0.7
+    - r-config
+    - r-jsonlite
+    - r-processx
+    - r-reticulate >=1.2
+    - r-tfruns >=0.9.1
     - r-yaml
 
   run:
     - r-base
-    - r-reticulate >=0.7
+    - r-config
+    - r-jsonlite
+    - r-processx
+    - r-reticulate >=1.2
+    - r-tfruns >=0.9.1
     - r-yaml
 
 test:
   commands:
-    - $R -e "library('tensorflow')"  # [not win]
+    # You can put additional test commands to be run here.
+    - $R -e "library('tensorflow')"           # [not win]
     - "\"%R%\" -e \"library('tensorflow')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
 
 about:
   home: https://github.com/rstudio/tensorflow
-  license: Apache 2.0
+  license: Apache License 2.0
   summary: Interface to 'TensorFlow' <https://www.tensorflow.org/>,  an open source software
     library for numerical computation using data flow graphs. Nodes in the graph represent
     mathematical operations,  while the graph edges represent the multidimensional data
@@ -57,3 +79,33 @@ extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - mingwandroid
+
+# The original CRAN metadata for this package was:
+
+# Package: tensorflow
+# Type: Package
+# Title: R Interface to 'TensorFlow'
+# Version: 1.4
+# Authors@R: c( person("JJ", "Allaire", role = c("aut", "cre"), email = "jj@rstudio.com"), person(family = "RStudio", role = c("cph", "fnd")), person("Yuan", "Tang", role = c("aut", "cph"), email = "terrytangyuan@gmail.com"), person("Dirk", "Eddelbuettel", role = c("ctb", "cph"), email = "edd@debian.org"), person("Nick", "Golding", role = c("ctb", "cph"), email = "nick.golding.research@gmail.com"), person(family = "Google Inc.", role = c("ctb", "cph"), comment = "Examples and Tutorials") )
+# Description: Interface to 'TensorFlow' <https://www.tensorflow.org/>,  an open source software library for numerical computation using data flow graphs. Nodes in the graph represent mathematical operations,  while the graph edges represent the multidimensional data arrays  (tensors) communicated between them. The flexible architecture allows you to deploy computation to one or more 'CPUs' or 'GPUs' in a desktop,  server, or mobile device with a single 'API'. 'TensorFlow' was originally developed by researchers and engineers working on the Google Brain Team  within Google's Machine Intelligence research organization for the  purposes of conducting machine learning and deep neural networks research, but the system is general enough to be applicable in a wide variety of other domains as well.
+# License: Apache License 2.0
+# URL: https://github.com/rstudio/tensorflow
+# BugReports: https://github.com/rstudio/tensorflow/issues
+# SystemRequirements: TensorFlow (https://www.tensorflow.org/)
+# Encoding: UTF-8
+# LazyData: true
+# Depends: R (>= 3.1)
+# Imports: config, jsonlite, processx, reticulate (>= 1.2), tfruns (>= 0.9.1), utils, yaml
+# Suggests: testthat
+# RoxygenNote: 6.0.1
+# NeedsCompilation: no
+# Packaged: 2017-09-27 10:26:42 UTC; jjallaire
+# Author: JJ Allaire [aut, cre], RStudio [cph, fnd], Yuan Tang [aut, cph], Dirk Eddelbuettel [ctb, cph], Nick Golding [ctb, cph], Google Inc. [ctb, cph] (Examples and Tutorials)
+# Maintainer: JJ Allaire <jj@rstudio.com>
+# Repository: CRAN
+# Date/Publication: 2017-09-27 12:23:38 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
