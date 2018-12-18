@@ -1,4 +1,4 @@
-{% set version = '1.8' %}
+{% set version = '1.10' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -11,7 +11,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/tensorflow_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/tensorflow/tensorflow_{{ version }}.tar.gz
-  sha256: 538b9c95727144fc7d7b9fde9c590b841210e1ee8a2375f62d772e7aaa88b4c7
+  sha256: f938b62d3cb26404f5878083e87e3aecd7d7c89ab37080824ae23ade798eff97
 
 build:
   merge_build_host: True  # [win]
@@ -33,7 +33,7 @@ requirements:
     - r-config
     - r-jsonlite >=1.2
     - r-processx
-    - r-reticulate >=1.5
+    - r-reticulate >=1.10
     - r-rstudioapi >=0.7
     - r-tfruns >=1.0
     - r-yaml
@@ -43,7 +43,7 @@ requirements:
     - r-config
     - r-jsonlite >=1.2
     - r-processx
-    - r-reticulate >=1.5
+    - r-reticulate >=1.10
     - r-rstudioapi >=0.7
     - r-tfruns >=1.0
     - r-yaml
@@ -96,15 +96,15 @@ extra:
 # Encoding: UTF-8
 # LazyData: true
 # Depends: R (>= 3.1)
-# Imports: config, jsonlite (>= 1.2), processx, reticulate (>= 1.5), tfruns (>= 1.0), utils, yaml, rstudioapi (>= 0.7)
+# Imports: config, jsonlite (>= 1.2), processx, reticulate (>= 1.10), tfruns (>= 1.0), utils, yaml, rstudioapi (>= 0.7)
 # Suggests: testthat, keras, tfestimators
-# RoxygenNote: 6.0.1
+# RoxygenNote: 6.1.0
 # NeedsCompilation: no
-# Packaged: 2018-06-14 12:44:12 UTC; jjallaire
+# Packaged: 2018-11-19 17:55:18 UTC; jjallaire
 # Author: JJ Allaire [aut, cre], RStudio [cph, fnd], Yuan Tang [aut, cph] (<https://orcid.org/0000-0001-5243-233X>), Dirk Eddelbuettel [ctb, cph], Nick Golding [ctb, cph], Tomasz Kalinowski [ctb, cph], Google Inc. [ctb, cph] (Examples and Tutorials)
 # Maintainer: JJ Allaire <jj@rstudio.com>
 # Repository: CRAN
-# Date/Publication: 2018-06-14 13:41:41 UTC
+# Date/Publication: 2018-11-19 18:50:03 UTC
 
 # See
 # http://docs.continuum.io/conda/build.html for
